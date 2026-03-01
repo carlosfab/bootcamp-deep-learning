@@ -1,0 +1,37 @@
+[project]
+name = "bootcamp-deep-learning"
+version = "0.1.0"
+description = "Detecção de Câncer de Pulmão com Deep Learning — Dataset LUNA16"
+readme = "README.md"
+requires-python = ">=3.11.3"
+dependencies = [
+    "gradio>=6.5.1",
+    "ipykernel>=7.1.0",
+    "ipython>=9.9.0",
+    "jupyter>=1.1.1",
+    "manim>=0.19.2",
+    "matplotlib>=3.10.8",
+    "numpy>=2.4.2",
+    "pandas>=3.0.0",
+    "plotly>=6.5.2",
+    "pytest>=9.0.2",
+    "requests>=2.32.5",
+    "scikit-image>=0.26.0",
+    "scikit-learn>=1.8.0",
+    "simpleitk>=2.5.3",
+    "torch>=2.0,<2.10",
+    "torchaudio>=2.2.2",
+    "torchvision>=0.17.2",
+    "tqdm>=4.67.2",
+]
+
+[tool.uv]
+# Ensure compatibility with macOS x86_64
+required-environments = ["sys_platform == 'darwin' and platform_machine == 'x86_64'"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
