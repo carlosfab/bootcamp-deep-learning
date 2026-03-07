@@ -67,6 +67,18 @@ htmlcov/
 .pytest_cache/
 
 # =========================
+# Claude / AI Agent Config
+# =========================
+CLAUDE.md
+.claude/
+skill_jupyter-notebook-aula/
+
+# =========================
+# Model Checkpoints
+# =========================
+checkpoints/
+
+# =========================
 # Misc
 # =========================
 *.log
