@@ -67,7 +67,7 @@ htmlcov/
 .pytest_cache/
 
 # =========================
-# Claude / AI Agent Config
+# Config (nao versionado)
 # =========================
 CLAUDE.md
 .claude/

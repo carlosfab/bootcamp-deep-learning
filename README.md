@@ -13,6 +13,8 @@ Pipeline de classificação binária (nódulo vs não-nódulo) em tomografias co
 ## Sumário
 
 - [Sobre o Projeto](#sobre-o-projeto)
+- [Tomografias Computadorizadas](#tomografias-computadorizadas)
+- [Pipeline de Dados](#pipeline-de-dados)
 - [Progresso](#progresso)
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Instalação e Configuração](#instalação-e-configuração)
@@ -23,13 +25,41 @@ Pipeline de classificação binária (nódulo vs não-nódulo) em tomografias co
 
 O projeto implementa um pipeline completo de detecção de nódulos pulmonares a partir de tomografias computadorizadas (CT scans), desde a exploração e preparação dos dados até o deploy de uma aplicação interativa com Gradio.
 
-```
-Candidatos pré-computados (CSV) → Carregar CT → Extrair patch 3D → Classificar (CNN 3D) → Deploy Gradio
-```
+<p align="center">
+  <img src="docs/fixed_landing_7_technical_flow_light.png" alt="Visão geral do pipeline" width="85%">
+</p>
+<p align="center"><em>Visão geral do pipeline — do CT scan bruto até a classificação por uma CNN 3D.</em></p>
 
-A abordagem utiliza **candidatos pré-computados** fornecidos pelo challenge LUNA16 (~551 mil coordenadas XYZ). Cada candidato é extraído como um crop 3D de 32×48×48 voxels e classificado por uma CNN 3D como nódulo ou não-nódulo.
+A abordagem utiliza **candidatos pré-computados** fornecidos pelo challenge LUNA16 (~551 mil coordenadas XYZ). Cada candidato é extraído como um crop 3D de 32x48x48 voxels e classificado por uma CNN 3D como nódulo ou não-nódulo. Não fazemos segmentação nem detecção no pipeline principal — os candidatos já vêm pré-computados pelo challenge.
 
-Não fazemos segmentação nem detecção no pipeline principal — os candidatos já vêm pré-computados pelo challenge.
+<br>
+
+## Tomografias Computadorizadas
+
+<p align="center">
+  <img src="docs/fixed_ct_slices_concept.png" alt="Slices de uma tomografia computadorizada" width="85%">
+</p>
+<p align="center"><em>Uma tomografia é composta por centenas de slices axiais empilhados, formando um volume 3D.</em></p>
+
+Uma tomografia computadorizada (CT scan) gera um volume 3D do corpo do paciente. Cada "fatia" (slice) é uma imagem 2D, e a pilha de fatias forma o volume completo. Os valores de cada voxel são medidos em **Unidades Hounsfield (HU)** — uma escala onde o ar vale -1000 HU, a água vale 0 HU e o osso pode chegar a +1000 HU.
+
+No dataset LUNA16, cada CT scan é armazenado como um par de arquivos `.mhd` (metadados) e `.raw` (voxels). O desafio fornece dois CSVs: `candidates.csv` com ~551 mil coordenadas XYZ de pontos suspeitos, e `annotations.csv` com os nódulos confirmados por radiologistas.
+
+<br>
+
+## Pipeline de Dados
+
+<p align="center">
+  <img src="docs/fixed_lung_cancer_pipeline_oreilly.png" alt="Pipeline de dados" width="85%">
+</p>
+<p align="center"><em>Pipeline completo: dos arquivos brutos até o sample pronto para a rede neural.</em></p>
+
+O caminho dos dados brutos até a entrada da rede neural segue estas etapas:
+
+1. **Carregar o CT scan** — leitura do `.mhd` com SimpleITK, obtendo o array 3D e os metadados (origin, spacing, direction)
+2. **Converter coordenadas** — as coordenadas XYZ (milímetros do paciente) são convertidas para índices IRC (index, row, col) do array NumPy
+3. **Extrair o crop 3D** — um patch de 32x48x48 voxels é recortado ao redor de cada candidato
+4. **Criar o sample PyTorch** — o crop vira um tensor `[1, 32, 48, 48]`, pronto para o DataLoader
 
 <br>
 
