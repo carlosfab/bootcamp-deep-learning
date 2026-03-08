@@ -1,4 +1,4 @@
-# Detecção de Câncer de Pulmão — LUNA16
+# Detecção de Câncer de Pulmão
 
 <a href="https://starresearch.institute" alt="star"><img src="https://img.shields.io/badge/Bootcamp-Deep%20Learning-0D1117?style=flat&logo=pytorch&logoColor=EE4C2C" /></a>
 <a href="http://linkedin.com/in/carlos-melo-data-science/" alt="linkedin"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white" /></a>
