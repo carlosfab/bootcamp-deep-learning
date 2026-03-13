@@ -130,7 +130,7 @@ def compute_metrics(tp, fp, fn, tn):
     }
 
 
-def train_one_epoch(model, loader, optimizer, loss_fn, device):
+def train_one_epoch(model, loader, optimizer, loss_fn, device, print_every=0):
     """Executa uma epoca de treinamento."""
     model.train()
     total_loss = 0.0
@@ -158,13 +158,17 @@ def train_one_epoch(model, loader, optimizer, loss_fn, device):
         total_loss += loss.item()
         n_batches += 1
 
+        if print_every > 0 and n_batches % print_every == 0:
+            avg = total_loss / n_batches
+            print(f"  Batch {n_batches}/{len(loader)} | Loss: {avg:.4f}")
+
     avg_loss = total_loss / max(n_batches, 1)
     metrics = compute_metrics(tp, fp, fn, tn)
     metrics['loss'] = avg_loss
     return metrics
 
 
-def validate(model, loader, loss_fn, device):
+def validate(model, loader, loss_fn, device, print_every=0):
     """Executa validacao (sem gradientes)."""
     model.eval()
     total_loss = 0.0
@@ -189,6 +193,10 @@ def validate(model, loader, loss_fn, device):
 
             total_loss += loss.item()
             n_batches += 1
+
+            if print_every > 0 and n_batches % print_every == 0:
+                avg = total_loss / n_batches
+                print(f"  Batch {n_batches}/{len(loader)} | Loss: {avg:.4f}")
 
     avg_loss = total_loss / max(n_batches, 1)
     metrics = compute_metrics(tp, fp, fn, tn)
