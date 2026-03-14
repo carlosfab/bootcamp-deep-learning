@@ -79,6 +79,11 @@ skill_jupyter-notebook-aula/
 checkpoints/
 
 # =========================
+# Scripts do instrutor (privado)
+# =========================
+scripts/
+
+# =========================
 # Misc
 # =========================
 *.log

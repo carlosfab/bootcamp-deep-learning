@@ -76,8 +76,8 @@ O caminho dos dados brutos até a entrada da rede neural segue estas etapas:
 
 ### Próximas etapas
 
-- [ ] Treinamento completo em GPU
-- [ ] Avaliação do modelo e análise de erros
+- [x] Treinamento completo em GPU
+- [x] Avaliação do modelo e análise de erros
 - [ ] Deploy com Gradio
 
 <br>
@@ -92,11 +92,15 @@ O caminho dos dados brutos até a entrada da rede neural segue estas etapas:
 │   ├── 03_analyze_coordinates
 │   ├── 04_ct_scan_to_dataset
 │   ├── 05_model_architecture
-│   └── 06_training
+│   ├── 06_training
+│   ├── 07_colab_training
+│   └── 08_model_evaluation
 ├── src/                       Módulos Python (gerados via %%writefile)
 │   ├── luna_data.py
 │   ├── model.py
-│   └── training.py
+│   ├── training.py
+│   └── inference.py
+├── checkpoints/               Checkpoints do modelo (não versionado)
 ├── data/                      Dataset LUNA16 (não versionado)
 ├── docs/                      Diagramas e referências
 └── pyproject.toml             Dependências e configuração
