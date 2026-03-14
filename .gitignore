@@ -76,7 +76,7 @@ skill_jupyter-notebook-aula/
 # =========================
 # Model Checkpoints
 # =========================
-checkpoints/
+# checkpoints/  (versionado — pesos pequenos, ~3.4 MB)
 
 # =========================
 # Scripts do instrutor (privado)
