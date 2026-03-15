@@ -89,3 +89,4 @@ scripts/
 *.log
 *.tmp
 *.bak
+.gradio/
