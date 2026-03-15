@@ -78,7 +78,7 @@ O caminho dos dados brutos até a entrada da rede neural segue estas etapas:
 
 - [x] Treinamento completo em GPU
 - [x] Avaliação do modelo e análise de erros
-- [ ] Deploy com Gradio
+- [x] Deploy com Gradio
 
 <br>
 
