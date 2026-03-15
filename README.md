@@ -65,17 +65,12 @@ O caminho dos dados brutos até a entrada da rede neural segue estas etapas:
 
 ## Progresso
 
-### Concluído
-
 - [x] Download e organização do dataset LUNA16
 - [x] Análise exploratória e unificação das fontes de dados
 - [x] Carregamento de CT scans e conversão de coordenadas
 - [x] Construção do PyTorch Dataset com extração de crops 3D
 - [x] Arquitetura da CNN 3D para classificação de nódulos
 - [x] Loop de treinamento com balanceamento e data augmentation
-
-### Próximas etapas
-
 - [x] Treinamento completo em GPU
 - [x] Avaliação do modelo e análise de erros
 - [x] Deploy com Gradio
@@ -94,12 +89,14 @@ O caminho dos dados brutos até a entrada da rede neural segue estas etapas:
 │   ├── 05_model_architecture
 │   ├── 06_training
 │   ├── 07_colab_training
-│   └── 08_model_evaluation
+│   ├── 08_model_evaluation
+│   └── 09_gradio_deploy
 ├── src/                       Módulos Python (gerados via %%writefile)
 │   ├── luna_data.py
 │   ├── model.py
 │   ├── training.py
 │   └── inference.py
+├── app.py                     Aplicação Gradio (gerado via %%writefile)
 ├── checkpoints/               Checkpoints do modelo (não versionado)
 ├── data/                      Dataset LUNA16 (não versionado)
 ├── docs/                      Diagramas e referências
