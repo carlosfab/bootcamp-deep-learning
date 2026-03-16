@@ -97,6 +97,7 @@ O caminho dos dados brutos até a entrada da rede neural segue estas etapas:
 │   ├── training.py
 │   └── inference.py
 ├── app.py                     Aplicação Gradio (gerado via %%writefile)
+├── tests/                     Testes automatizados
 ├── checkpoints/               Checkpoints do modelo (não versionado)
 ├── data/                      Dataset LUNA16 (não versionado)
 ├── docs/                      Diagramas e referências
@@ -126,7 +127,13 @@ uv sync
 source .venv/bin/activate
 ```
 
-4. O dataset LUNA16 (~111 GB) deve ser baixado separadamente. O notebook `01_download_luna16.ipynb` contém as instruções de download via API.
+4. Rodar os testes para verificar que está tudo funcionando:
+
+```bash
+pytest tests/ -v
+```
+
+5. O dataset LUNA16 (~111 GB) deve ser baixado separadamente. O notebook `01_download_luna16.ipynb` contém as instruções de download via API.
 
 ---
 
